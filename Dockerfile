@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y git && \ 
     apt-get install -y cmake && \
     apt-get install -y python3 python3-pip && \
-    apt-get install libboost-all-dev
+    apt-get install -y libboost-all-dev 
 
 RUN pip3 install conan
 
