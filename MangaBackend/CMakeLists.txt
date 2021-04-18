@@ -19,6 +19,8 @@ list(APPEND CONAN_DEPENDENCIES
         spdlog/1.8.5
         sqlite_orm/1.6
         nlohmann_json/3.9.1
+        OPTIONS
+        spdlog:header_only=True
         )
 
 if (NOT $ENV{DOCKER_BUILD})
