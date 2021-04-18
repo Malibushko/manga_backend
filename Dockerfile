@@ -20,8 +20,7 @@ WORKDIR ./manga_backend
 RUN cmake . -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 
-RUN ls -l
-RUN pwd
+RUN find .
 RUN chmod a+x bin/MangaBackend
 
 CMD bin/MangaBackend ./manga_backend/db.sqlite
