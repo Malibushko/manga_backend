@@ -222,7 +222,7 @@ std::shared_ptr<QueryRouterBase> Server::CreateRouter() const
 
   Router->AddRoute(Query{"/user/register/*"}, details::CreateDefaultInsertResponse<User>);
 
-  Router->AddRoute(Query{"/user/get*"}, details::CreateDefaultGetResponse<User, USER_TYPE::ADMIN>);
+  Router->AddRoute(Query{"/user/get*"}, details::CreateDefaultGetResponse<User, static_cast<int>(USER_TYPE::ADMIN)>);
 
   Router->AddRoute(Query{"/user/login*"}, [](const QueryRouter::request_t & _Req) {
     QueryRouter::response_t Response = details::CreateDefaultResponse()(_Req);
@@ -281,7 +281,8 @@ std::shared_ptr<QueryRouterBase> Server::CreateRouter() const
     return Response;
   });
 
-  Router->AddRoute(Query{"/manga_blob/upload*"}, details::CreateDefaultInsertResponse<MangaBlob, USER_TYPE::ADMIN>);
+  Router->AddRoute(Query{"/manga_blob/upload*"},
+                   details::CreateDefaultInsertResponse<MangaBlob, static_cast<int>(USER_TYPE::ADMIN)>);
 
   Router->AddRoute(Query{"/manga_blob/get*"}, details::CreateDefaultGetResponse<MangaBlob>);
 
