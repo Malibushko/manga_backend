@@ -1,4 +1,4 @@
-FROM arm32v7/ubuntu:18.04
+FROM arm32v7/ubuntu:20.04
 
 EXPOSE 80
 ENV DOCKER_BUILD=1                                                                                                       
