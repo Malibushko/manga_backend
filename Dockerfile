@@ -10,10 +10,8 @@ RUN apt-get update && \
 
 RUN git clone https://github.com/Malibushko/manga_backend.git
 RUN cd manga_backend
-RUN mkdir build && cd build
-RUN cmake .. -DCMAKE_BUILD_TYPE=Release
+RUN cmake manga_backend -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
-RUN cd bin
-RUN chmod a+x MangaBackend
+RUN chmod a+x ./bin/MangaBackend
 
-CMD ./MangaBackend ../../db.sqlite
+CMD ./bin/MangaBackend ./manga_backend/db.sqlite
