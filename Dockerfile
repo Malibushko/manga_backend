@@ -13,8 +13,8 @@ RUN apt-get update && \
 RUN pip3 install conan
 
 RUN git clone https://github.com/Malibushko/manga_backend.git
-RUN cd manga_backend
-RUN cmake manga_backend -DCMAKE_BUILD_TYPE=Release
+WORKDIR ./manga_backend
+RUN cmake . -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 RUN chmod a+x ./bin/MangaBackend
 
