@@ -220,9 +220,13 @@ std::shared_ptr<QueryRouterBase> Server::CreateRouter() const
 
   auto Router = std::make_shared<QueryRouter>();
 
-  Router->AddRoute(Query{"/user/register/*"}, details::CreateDefaultInsertResponse<User>);
+  Router->AddRoute(Query{"/user/register/*"}, [](auto &&... Args) {
+    return details::CreateDefaultInsertResponse<User>(std::forward<decltype(Args)>(Args)...);
+  });
 
-  Router->AddRoute(Query{"/user/get*"}, details::CreateDefaultGetResponse<User, static_cast<int>(USER_TYPE::ADMIN)>);
+  Router->AddRoute(Query{"/user/get*"}, [](auto &&... Args) {
+    return details::CreateDefaultGetResponse<User, USER_TYPE::ADMIN>(std::forward<decltype(Args)>(Args)...);
+  });
 
   Router->AddRoute(Query{"/user/login*"}, [](const QueryRouter::request_t & _Req) {
     QueryRouter::response_t Response = details::CreateDefaultResponse()(_Req);
@@ -281,14 +285,21 @@ std::shared_ptr<QueryRouterBase> Server::CreateRouter() const
     return Response;
   });
 
-  Router->AddRoute(Query{"/manga_blob/upload*"},
-                   details::CreateDefaultInsertResponse<MangaBlob, static_cast<int>(USER_TYPE::ADMIN)>);
+  Router->AddRoute(Query{"/manga_blob/upload*"}, [](auto &&... Args) {
+    return details::CreateDefaultInsertResponse<MangaBlob, USER_TYPE::ADMIN>(std::forward<decltype(Args)>(Args)...);
+  });
 
-  Router->AddRoute(Query{"/manga_blob/get*"}, details::CreateDefaultGetResponse<MangaBlob>);
+  Router->AddRoute(Query{"/manga_blob/get*"}, [](auto &&... Args) {
+    return details::CreateDefaultGetResponse<MangaBlob>(std::forward<decltype(Args)>(Args)...);
+  });
 
-  Router->AddRoute(Query{"/manga/get*"}, details::CreateDefaultGetResponse<Manga>);
+  Router->AddRoute(Query{"/manga/get*"}, [](auto &&... Args) {
+    return details::CreateDefaultGetResponse<Manga>(std::forward<decltype(Args)>(Args)...);
+  });
 
-  Router->AddRoute(Query{"/manga/create*"}, details::CreateDefaultInsertResponse<Manga>);
+  Router->AddRoute(Query{"/manga/create*"}, [](auto &&... Args) {
+    return details::CreateDefaultInsertResponse<Manga>(std::forward<decltype(Args)>(Args)...);
+  });
 
   return Router;
 }
