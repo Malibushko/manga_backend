@@ -6,7 +6,9 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git && \ 
     apt-get install -y cmake && \
-    apt-get install -y python3 python3-pip 
+    apt-get install -y python3 python3-pip
+
+RUN pip install conan
 
 RUN git clone https://github.com/Malibushko/manga_backend.git
 RUN cd manga_backend
