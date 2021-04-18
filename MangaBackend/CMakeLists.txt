@@ -22,7 +22,7 @@ list(APPEND CONAN_DEPENDENCIES
         )
 
 if (NOT $ENV{DOCKER_BUILD})
-message("Non docker build. Downloading build fron conan repositories...");
+message("Non docker build. Downloading build fron conan repositories...")
 list(APPEND CONAN_DEPENDENCIES boost/1.75.0)
 
 endif()
