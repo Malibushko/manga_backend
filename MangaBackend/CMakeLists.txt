@@ -15,14 +15,17 @@ endif()
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
-set(CONAN_DEPENDENCIES
-        boost/1.75.0
+list(APPEND CONAN_DEPENDENCIES
         spdlog/1.8.5
         sqlite_orm/1.6
         nlohmann_json/3.9.1
-        OPTIONS
-        boost:header_only=True
         )
+
+if (NOT $ENV{DOCKER_BUILD})
+message("Non docker build. Downloading build fron conan repositories...");
+list(APPEND CONAN_DEPENDENCIES boost/1.75.0)
+
+endif()
 
 conan_cmake_run(REQUIRES ${CONAN_DEPENDENCIES} 
                 BASIC_SETUP CMAKE_TARGETS BUILD missing)

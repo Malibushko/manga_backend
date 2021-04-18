@@ -1,6 +1,7 @@
 FROM arm32v7/ubuntu:18.04
 
 EXPOSE 80
+ENV DOCKER_BUILD=1                                                                                                       
 
 RUN apt-get update && \
     apt-get upgrade -y && \
