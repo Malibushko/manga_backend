@@ -21,6 +21,6 @@ RUN cmake . -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 
 RUN find .
-RUN chmod a+x bin/MangaBackend
+RUN chmod a+x MangaBackend/bin/MangaBackend
 
-CMD bin/MangaBackend ./manga_backend/db.sqlite
+CMD MangaBackend/bin/MangaBackend db.sqlite
