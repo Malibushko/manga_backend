@@ -21,6 +21,7 @@ list(APPEND CONAN_DEPENDENCIES
         nlohmann_json/3.9.1
         OPTIONS
         spdlog:header_only=True
+        fmt:header_only=True
         )
 
 if (NOT $ENV{DOCKER_BUILD})
