@@ -12,7 +12,7 @@ RUN apt-get update && \
 
 RUN pip3 install conan
 
-#ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN git clone https://github.com/Malibushko/manga_backend.git
 
 WORKDIR ./manga_backend
@@ -21,4 +21,4 @@ RUN cmake . -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 RUN chmod a+x ./manga_backend/bin/MangaBackend
 
-CMD .manga_backend/bin/MangaBackend ./manga_backend/db.sqlite
+CMD ./manga_backend/bin/MangaBackend ./manga_backend/db.sqlite
