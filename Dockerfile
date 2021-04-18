@@ -1,4 +1,14 @@
-FROM ubuntu:18.04
-COPY . /app
-RUN make /app
-CMD python /app/app.py
+FROM arm32v7/ubuntu:18.04
+EXPOSE 80
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git \ 
+    apt-get install -y cmake
+RUN git clone https://github.com/Malibushko/manga_backend.git
+RUN cd manga_backend
+RUN mkdir build && cd build
+RUN cmake .. -DCMAKE_BUILD_TYPE=Release
+RUN cmake --build .
+RUN cd bin
+RUN chmod a+x MangaBackend
+CMD ./MangaBackend ../../db.sqlite
